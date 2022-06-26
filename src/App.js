@@ -11,7 +11,6 @@ export default function App() {
   const [imgUrl, setImgUrl] = useState('');
   const [image, setImage] = useState([]);
   const [pages,setPages] = useState(1);
-  const [loadMorePage,setLoadMorePage] = useState(0);
   const [error,setError] = useState(null);
   const [stat, setStatus] = useState('idle');
   const [showModalWindow, setShowModalWindow] = useState(false);
@@ -38,15 +37,15 @@ export default function App() {
       if (images.length > 0) {
         setImage(prevState => [...prevState, ...images],
           setStatus('resolved'),
-          setLoadMorePage(response.loadMorePage));
+          );
       };
         
     }).catch(error => {
       setError(error);
       setStatus('rejected');
     });
-      
-  },[imgUrl, pages]);
+      console.log(error);
+  },[error, imgUrl, pages]);
 
   
 
@@ -71,7 +70,6 @@ export default function App() {
 
  const loadMoreButton = event => { 
     event.preventDefault();
-    // this.setState(({ pages }) => ({pages:pages +1}));
    setPages(prevState => prevState + 1);
   };
 
