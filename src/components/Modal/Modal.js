@@ -10,7 +10,7 @@ export default function Modal({ onClose, largeImage }) {
 
         window.addEventListener('keydown', handleKeyDown);
         return () => { window.removeEventListener('keydown',handleKeyDown);};
-    },[]);
+    });
 
     const handleKeyDown = e => { 
             console.log(e.code);
