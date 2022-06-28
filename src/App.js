@@ -10,7 +10,7 @@ import Loader from "components/Loader";
 export default function App() { 
   const [imgUrl, setImgUrl] = useState('');
   const [image, setImage] = useState([]);
-  const [pages,setPages] = useState(1);
+  const [pages,setPages] = useState(0);
   const [error,setError] = useState(null);
   const [stat, setStatus] = useState('idle');
   const [showModalWindow, setShowModalWindow] = useState(false);
@@ -27,7 +27,7 @@ export default function App() {
     .then(response => {
       const images = response.hits.map(({ id, tags, largeImageURL, webformatURL }) =>
         ({ id, tags, largeImageURL, webformatURL }));
-      console.log(images);
+      console.log(pages);
 
       if (images.length === 0) { 
         alert(`We did't find ${imgUrl} image `);
@@ -55,6 +55,9 @@ export default function App() {
       setImgUrl(imageUrl);
       setPages(prevState => prevState + 1);
     console.log(imageUrl);
+    };
+    if (imgUrl) { 
+      setPages(1);
     };
   };
 
